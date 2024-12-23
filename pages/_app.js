@@ -26,14 +26,14 @@ const App = () => {
   const [data, setData] = useState([]);
   const [charts, setCharts] = useState(null);
 
-  // Dynamische Backend-URL
   const backendUrl =
-    process.env.REACT_APP_BACKEND_URL || "https://projektarbeitwid.vercel.app";
+    process.env.REACT_APP_BACKEND_URL || "http://127.0.0.1:8000";
 
   useEffect(() => {
     const fetchStations = async () => {
       try {
         const response = await axios.get(`${backendUrl}/api/stations`);
+        console.log("Fetched stations:", response.data);
         setStations(response.data);
       } catch (error) {
         console.error("Error fetching stations:", error);
@@ -87,11 +87,15 @@ const App = () => {
           value={station}
           onChange={(e) => setStation(e.target.value)}
         >
-          {stations.map((station) => (
-            <MenuItem key={station.key} value={station.key}>
-              {station.name}
-            </MenuItem>
-          ))}
+          {stations.length > 0 ? (
+            stations.map((station) => (
+              <MenuItem key={station.key} value={station.key}>
+                {station.name}
+              </MenuItem>
+            ))
+          ) : (
+            <MenuItem disabled>Keine Stationen verfügbar</MenuItem>
+          )}
         </Select>
       </FormControl>
       <Button
