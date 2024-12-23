@@ -26,10 +26,14 @@ const App = () => {
   const [data, setData] = useState([]);
   const [charts, setCharts] = useState(null);
 
+  // Dynamische Backend-URL
+  const backendUrl =
+    process.env.REACT_APP_BACKEND_URL || "https://dein-backend-url.com";
+
   useEffect(() => {
     const fetchStations = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/stations");
+        const response = await axios.get(`${backendUrl}/api/stations`);
         setStations(response.data);
       } catch (error) {
         console.error("Error fetching stations:", error);
@@ -37,12 +41,12 @@ const App = () => {
     };
 
     fetchStations();
-  }, []);
+  }, [backendUrl]);
 
   const handleFetchData = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/data?date=${date}&station=${station}`
+        `${backendUrl}/api/data?date=${date}&station=${station}`
       );
       setData([]);
       setData(response.data);
@@ -50,7 +54,7 @@ const App = () => {
       const month = new Date(date).getMonth() + 1;
       const year = new Date(date).getFullYear();
       const chartsResponse = await axios.get(
-        `http://127.0.0.1:8000/api/monthly_charts?month=${month}&year=${year}&station=${station}`
+        `${backendUrl}/api/monthly_charts?month=${month}&year=${year}&station=${station}`
       );
       setCharts(chartsResponse.data);
     } catch (error) {
