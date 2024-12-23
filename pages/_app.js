@@ -25,15 +25,20 @@ const App = () => {
   const [stations, setStations] = useState([]);
   const [data, setData] = useState([]);
   const [charts, setCharts] = useState(null);
+  const [backendUrl, setBackendUrl] = useState("");
 
-  const backendUrl =
-    process.env.REACT_APP_BACKEND_URL ||
-    (typeof window !== "undefined" && window.location.hostname === "localhost"
-      ? "http://127.0.0.1:8000"
-      : "https://projektarbeitwid.vercel.app");
+  useEffect(() => {
+    const url =
+      process.env.REACT_APP_BACKEND_URL ||
+      (window.location.hostname === "localhost"
+        ? "http://127.0.0.1:8000"
+        : "https://projektarbeitwid.vercel.app");
+    setBackendUrl(url);
+  }, []);
 
   useEffect(() => {
     const fetchStations = async () => {
+      if (!backendUrl) return;
       try {
         const response = await axios.get(`${backendUrl}/api/stations`);
         console.log("Fetched stations:", response.data);
