@@ -25,20 +25,12 @@ const App = () => {
   const [stations, setStations] = useState([]);
   const [data, setData] = useState([]);
   const [charts, setCharts] = useState(null);
-  const [backendUrl, setBackendUrl] = useState("");
 
-  useEffect(() => {
-    const url =
-      process.env.REACT_APP_BACKEND_URL ||
-      (window.location.hostname === "localhost"
-        ? "http://127.0.0.1:8000"
-        : "https://projektarbeitwid.vercel.app");
-    setBackendUrl(url);
-  }, []);
+  const backendUrl =
+    process.env.REACT_APP_BACKEND_URL || "http://127.0.0.1:8000";
 
   useEffect(() => {
     const fetchStations = async () => {
-      if (!backendUrl) return;
       try {
         const response = await axios.get(`${backendUrl}/api/stations`);
         console.log("Fetched stations:", response.data);
@@ -158,7 +150,7 @@ const App = () => {
       {charts && (
         <div style={{ marginTop: "40px", textAlign: "center" }}>
           <Typography variant="h5" gutterBottom>
-            Visualisierungen
+            Monatliche Durchschnittswerte
           </Typography>
           <div
             style={{

@@ -100,15 +100,15 @@ def get_monthly_charts(month: int, year: int, station: str):
 
         rain_chart = base.mark_line(color="blue").encode(
             y="RainDur:Q"
-        ).properties(title="Regendauer für den ausgewählten Monat in Minuten")
+        ).properties(title="Regendauer [Minuten]")
 
         temp_chart = base.mark_line(color="red").encode(
             y="Temperature:Q"
-        ).properties(title="Temperatur für den ausgewählten Monat in °C")
+        ).properties(title="Temperatur [°C]")
 
         pressure_chart = base.mark_line(color="green").encode(
             y="Pressure:Q"
-        ).properties(title="Luftdruck für den ausgewählten Monat in hPa")
+        ).properties(title="Luftdruck [hPa]")
 
         charts = {
             "rain_chart": rain_chart.to_dict(),
