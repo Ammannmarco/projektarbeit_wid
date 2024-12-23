@@ -13,7 +13,10 @@ app = FastAPI(docs_url="/api/docs", openapi_url="/api/openapi.json")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://projektarbeitwid.vercel.app", "http://localhost:3000"],
+    allow_origins=[
+        "https://projektarbeitwid.vercel.app",
+        "http://localhost:3000",               
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -100,15 +103,15 @@ def get_monthly_charts(month: int, year: int, station: str):
 
         rain_chart = base.mark_line(color="blue").encode(
             y="RainDur:Q"
-        ).properties(title="Regendauer [Minuten]")
+        ).properties(title="Regendauer über einen Monat pro Tag in Minuten")
 
         temp_chart = base.mark_line(color="red").encode(
             y="Temperature:Q"
-        ).properties(title="Temperatur [°C]")
+        ).properties(title="Temperatur über einen Monat pro Tag in °C")
 
         pressure_chart = base.mark_line(color="green").encode(
             y="Pressure:Q"
-        ).properties(title="Luftdruck [hPa]")
+        ).properties(title="Luftdruck über einen Monat pro Tag in hPa")
 
         charts = {
             "rain_chart": rain_chart.to_dict(),

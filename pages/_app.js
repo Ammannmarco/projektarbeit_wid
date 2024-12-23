@@ -27,7 +27,10 @@ const App = () => {
   const [charts, setCharts] = useState(null);
 
   const backendUrl =
-    process.env.REACT_APP_BACKEND_URL || "http://127.0.0.1:8000";
+    process.env.REACT_APP_BACKEND_URL ||
+    (typeof window !== "undefined" && window.location.hostname === "localhost"
+      ? "http://127.0.0.1:8000"
+      : "https://projektarbeitwid.vercel.app");
 
   useEffect(() => {
     const fetchStations = async () => {
@@ -150,7 +153,7 @@ const App = () => {
       {charts && (
         <div style={{ marginTop: "40px", textAlign: "center" }}>
           <Typography variant="h5" gutterBottom>
-            Monatliche Durchschnittswerte
+            Visualisierungen
           </Typography>
           <div
             style={{
