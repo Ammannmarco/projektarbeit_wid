@@ -150,7 +150,7 @@ const App = () => {
       {charts && (
         <div style={{ marginTop: "40px", textAlign: "center" }}>
           <Typography variant="h5" gutterBottom>
-            Monatliche Durchschnittswerte
+            Visualisierungen
           </Typography>
           <div
             style={{
