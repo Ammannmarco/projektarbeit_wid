@@ -23,8 +23,7 @@ app.add_middleware(
 )
 
 
-data_file_path = os.path.join(os.path.dirname(__file__), "../src/meteodaten_2023_daily.json")
-
+data_file_path = os.path.join(os.path.dirname(__file__), "meteodaten_2023_daily.json")
 
 try:
     with open(data_file_path, "r") as f:
