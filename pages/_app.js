@@ -28,7 +28,7 @@ const App = () => {
 
   // Dynamische Backend-URL
   const backendUrl =
-    process.env.REACT_APP_BACKEND_URL || "https://dein-backend-url.com";
+    process.env.REACT_APP_BACKEND_URL || "https://projektarbeitwid.vercel.app";
 
   useEffect(() => {
     const fetchStations = async () => {
