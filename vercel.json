@@ -21,7 +21,7 @@
     }
   ],
   "env": {
-    "FASTAPI_BACKEND_URL": "https://projektarbeitwid.vercel.app/.vercel.app/api",
-    "NEXT_PUBLIC_BACKEND_URL": "https://projektarbeitwid.vercel.app//api"
+"FASTAPI_BACKEND_URL": "https://projektarbeitwid.vercel.app/api",
+"NEXT_PUBLIC_BACKEND_URL": "https://projektarbeitwid.vercel.app/api"
   }
 }
