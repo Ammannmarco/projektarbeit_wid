@@ -8,7 +8,7 @@ import calendar
 import altair as alt
 
 
-app = FastAPI(docs_url="/api/docs", openapi_url="/api/openapi.json")
+app = FastAPI(docs_url="/docs", openapi_url="/openapi.json")
 
 
 app.add_middleware(
@@ -33,14 +33,14 @@ except FileNotFoundError:
     raise RuntimeError(f"Die Datei 'meteodaten_2023_daily.json' wurde im Ordner 'src' nicht gefunden.")
 
 
-@app.get("/api/stations")
+@app.get("/stations")
 def get_stations():
     stations = [{"key": entry["Standort"], "name": entry["Standortname"]} for entry in weather_data]
     unique_stations = {station["key"]: station for station in stations}.values()
     return JSONResponse(content=list(unique_stations))
 
 
-@app.get("/api/data")
+@app.get("/data")
 def get_data(date: str, station: str = Query(None)):
     try:
         
@@ -77,7 +77,7 @@ def get_data(date: str, station: str = Query(None)):
         return JSONResponse(content={"error": str(e)}, status_code=400)
 
 
-@app.get("/api/monthly_charts")
+@app.get("/monthly_charts")
 def get_monthly_charts(month: int, year: int, station: str):
     try:
         _, last_day = calendar.monthrange(year, month)
