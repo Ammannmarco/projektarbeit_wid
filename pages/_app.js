@@ -35,7 +35,7 @@ const App = () => {
   useEffect(() => {
     const fetchStations = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/stations`);
+        const response = await axios.get(`${backendUrl}/api/py/stations`);
         console.log("Fetched stations:", response.data);
         setStations(response.data);
       } catch (error) {
@@ -49,7 +49,7 @@ const App = () => {
   const handleFetchData = async () => {
     try {
       const response = await axios.get(
-        `${backendUrl}/data?date=${date}&station=${station}`
+        `${backendUrl}/api/py/data?date=${date}&station=${station}`
       );
       setData([]);
       setData(response.data);
@@ -57,7 +57,7 @@ const App = () => {
       const month = new Date(date).getMonth() + 1;
       const year = new Date(date).getFullYear();
       const chartsResponse = await axios.get(
-        `${backendUrl}/monthly_charts?month=${month}&year=${year}&station=${station}`
+        `${backendUrl}/api/py/monthly_charts?month=${month}&year=${year}&station=${station}`
       );
       setCharts(chartsResponse.data);
     } catch (error) {
