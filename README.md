@@ -78,6 +78,8 @@ Mithilfe der WebApp können Wetterdaten vom Jahr 2023 in Zürich visualisiert we
 
 ## Beispielbilder der WebApp
 
-![WebApp oben](public/Bsp_App_oben.png)
+![WebApp bei Start](public/Start_App.png)
 
-![WebApp unten](public/Bsp_App_unten.png)
+![WebApp nach erfolgreicher Eingabe oben](public/Eingabe_1.png)
+
+![WebApp nach erfolgreicher Eingabe unten](public/Eingabe_2.png)
